@@ -76,9 +76,11 @@ public class Amazed
      * Runs the solver on the maze, waits for termination, and prints
      * to screen the outcome of the search.
      */
+
     public void solve()
     {
         ForkJoinPool pool = ForkJoinPool.commonPool();
+        // ForkJoinPool pool = ForkJoinPool.commonPool();
         path = pool.invoke(solver);
         if (path != null && maze.isValidPath(path))
             System.out.println("Goal found :-D");

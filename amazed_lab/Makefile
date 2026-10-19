@@ -44,5 +44,11 @@ parallel_large_step3: compile
 parallel_large_step9: compile
 	$(JAVA) -cp $(MAIN_CP) $(MAIN_CLASS) $(MAPS_DIR)/large.map parallel-9
 
+parallel_huge_step3: compile
+	$(JAVA) -cp $(MAIN_CP) $(MAIN_CLASS) $(MAPS_DIR)/huge.map parallel-3
+
+parallel_huge_step9: compile
+	$(JAVA) -cp $(MAIN_CP) $(MAIN_CLASS) $(MAPS_DIR)/huge.map parallel-9
+
 .PHONY: compile
 

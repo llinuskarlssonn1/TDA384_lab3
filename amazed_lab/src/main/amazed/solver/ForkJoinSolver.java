@@ -96,19 +96,19 @@ public class ForkJoinSolver
         while(!frontier.empty() && !foundGoal) {
             
             while(frontier.size() > 1) {
-                // if(forkAfter > 0 && steps >= forkAfter) {
-                //     int next = frontier.pop();
-                //     ForkJoinSolver newSolver = new ForkJoinSolver(maze, forkAfter, next, visited, predecessor);
-                //     newSolver.fork();         
-                //     subtasks.add(newSolver); 
-                //     steps = 0;
-                // } else {
-                //     break;
-                // }
-                int next = frontier.pop();
-                ForkJoinSolver newSolver = new ForkJoinSolver(maze, forkAfter, next, visited, predecessor);
-                newSolver.fork();         
-                subtasks.add(newSolver); 
+                if(forkAfter > 0 && steps >= forkAfter) {
+                    int next = frontier.pop();
+                    ForkJoinSolver newSolver = new ForkJoinSolver(maze, forkAfter, next, visited, predecessor);
+                    newSolver.fork();         
+                    subtasks.add(newSolver); 
+                    steps = 0;
+                } else {
+                    break;
+                }
+                // int next = frontier.pop();
+                // ForkJoinSolver newSolver = new ForkJoinSolver(maze, forkAfter, next, visited, predecessor);
+                // newSolver.fork();         
+                // subtasks.add(newSolver); 
             }
             
             // get the new node to process
@@ -141,7 +141,7 @@ public class ForkJoinSolver
                         predecessor.putIfAbsent(nb, current);
                 }
             } 
-            // steps++;
+            steps++;
         }
         for (int i = 0; i < subtasks.size(); i++) {
             List<Integer> result = subtasks.get(i).join();
